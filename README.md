@@ -9,7 +9,7 @@
 ### Executando
 - Clone o projeto:
   ```shell
-  git@github.com:cleefsouza/real-cambio.git
+  git@github.com:cleefsouza/php-alura.git
   ```
  
 ### Autor <div id="autor"></div>
