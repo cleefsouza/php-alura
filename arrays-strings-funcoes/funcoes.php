@@ -1,6 +1,7 @@
 <?php
 
 const ZERADO = 0;
+const DIVISOR = "------------------------" . PHP_EOL;
 
 // sub-rotinas
 
@@ -10,19 +11,25 @@ const ZERADO = 0;
  */
 function msg(string $acao, bool $sucesso = false): void
 {
-    echo $sucesso ? "Ação ($acao) realizada com sucesso." . PHP_EOL : "Você não pode $acao esse valor." . PHP_EOL;
+    echo $sucesso
+        ? "Ação ($acao) realizada com sucesso." . PHP_EOL . DIVISOR
+        : "Você não pode $acao esse valor." . PHP_EOL . DIVISOR;
 }
 
 /**
- * @param array $conta
+ * @param array|null $conta
  */
-function exibir(array $conta): void
+function exibir(?array $conta): void
 {
-    echo "------------------------" . PHP_EOL;
+    if (empty($conta)) {
+        msg("exibir");
+        return;
+    }
+
     echo "CPF: {$conta["cpf"]}" . PHP_EOL;
     echo "Titular: {$conta["titular"]}" . PHP_EOL;
     echo "Saldo: R$ {$conta["saldo"]}" . PHP_EOL;
-    echo "------------------------" . PHP_EOL;
+    echo DIVISOR;
 }
 
 // funções
@@ -61,4 +68,19 @@ function depositar(float $valor, array $conta): array
     msg("depositar", true);
 
     return $conta;
+}
+
+/**
+ * @param array $contas
+ * @param string $numero
+ */
+function remover(array &$contas, string $numero): void
+{
+    if (key_exists($numero, $contas)) {
+        unset($contas[$numero]);
+        msg("remover, conta $numero", true);
+        return;
+    }
+
+    msg("remover");
 }
