@@ -51,14 +51,6 @@ class Conta
     }
 
     /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @return string
      */
     public function getCpf(): string
@@ -109,9 +101,10 @@ class Conta
     /**
      * @param float $valor
      */
-    public function sacar(float $valor): void {
+    public function sacar(float $valor): void
+    {
         if ($this->saldo < $valor) {
-            echo "Saldo insuficiente.";
+            echo "{$this->nome} - Saldo insuficiente." . PHP_EOL;
             return;
         }
 
@@ -121,9 +114,10 @@ class Conta
     /**
      * @param float $valor
      */
-    public function depositar(float $valor): void {
+    public function depositar(float $valor): void
+    {
         if (0 >= $valor) {
-            echo "Valor invalido.";
+            echo "{$this->nome} - Valor invalido." . PHP_EOL;
             return;
         }
 
@@ -137,11 +131,19 @@ class Conta
     public function transferir(float $valor, Conta &$destino): void
     {
         if ($this->saldo < $valor) {
-            echo "Saldo insuficiente.";
+            echo "{$this->nome} - Saldo insuficiente." . PHP_EOL;
             return;
         }
 
         $this->sacar($valor);
         $destino->depositar($valor);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return "Id: {$this->id}, Titular: {$this->nome}, CPF: {$this->cpf}, Saldo: {$this->saldo}" . PHP_EOL;
     }
 }
