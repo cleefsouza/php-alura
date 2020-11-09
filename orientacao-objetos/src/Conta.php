@@ -105,4 +105,43 @@ class Conta
     {
         $this->saldo = $saldo;
     }
+
+    /**
+     * @param float $valor
+     */
+    public function sacar(float $valor): void {
+        if ($this->saldo < $valor) {
+            echo "Saldo insuficiente.";
+            return;
+        }
+
+        $this->saldo -= $valor;
+    }
+
+    /**
+     * @param float $valor
+     */
+    public function depositar(float $valor): void {
+        if (0 >= $valor) {
+            echo "Valor invalido.";
+            return;
+        }
+
+        $this->saldo += $valor;
+    }
+
+    /**
+     * @param float $valor
+     * @param Conta $destino
+     */
+    public function transferir(float $valor, Conta &$destino): void
+    {
+        if ($this->saldo < $valor) {
+            echo "Saldo insuficiente.";
+            return;
+        }
+
+        $this->sacar($valor);
+        $destino->depositar($valor);
+    }
 }
