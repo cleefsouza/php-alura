@@ -13,19 +13,19 @@ class Conta
     private int $id;
 
     /**
-     * @var string
+     * @var int
      */
-    private string $cpf;
-
-    /**
-     * @var string
-     */
-    private string $nome;
+    private int $numero;
 
     /**
      * @var float
      */
     private float $saldo;
+
+    /**
+     * @var Titular
+     */
+    private Titular $titular;
 
     /**
      * @var int
@@ -34,15 +34,15 @@ class Conta
 
     /**
      * Conta constructor.
-     * @param string $cpf
-     * @param string $nome
+     * @param Titular $titular
+     * @param int $numero
      * @param int $saldo
      */
-    public function __construct(string $cpf, string $nome, int $saldo = 0)
+    public function __construct(Titular $titular, int $numero, int $saldo = 0)
     {
         $this->id = ++Conta::$sequence;
-        $this->cpf = $cpf;
-        $this->nome = $nome;
+        $this->titular = $titular;
+        $this->numero = $numero;
         $this->saldo = $saldo;
     }
 
@@ -55,35 +55,19 @@ class Conta
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getCpf(): string
+    public function getNumero(): int
     {
-        return $this->cpf;
+        return $this->numero;
     }
 
     /**
-     * @param string $cpf
+     * @param int $numero
      */
-    public function setCpf(string $cpf): void
+    public function setNumero(int $numero): void
     {
-        $this->cpf = $cpf;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNome(): string
-    {
-        return $this->nome;
-    }
-
-    /**
-     * @param string $nome
-     */
-    public function setNome(string $nome): void
-    {
-        $this->nome = $nome;
+        $this->numero = $numero;
     }
 
     /**
@@ -103,12 +87,44 @@ class Conta
     }
 
     /**
+     * @return Titular
+     */
+    public function getTitular(): Titular
+    {
+        return $this->titular;
+    }
+
+    /**
+     * @param Titular $titular
+     */
+    public function setTitular(Titular $titular): void
+    {
+        $this->titular = $titular;
+    }
+
+    /**
+     * @return int
+     */
+    public static function getSequence(): int
+    {
+        return self::$sequence;
+    }
+
+    /**
+     * @param int $sequence
+     */
+    public static function setSequence(int $sequence): void
+    {
+        self::$sequence = $sequence;
+    }
+
+    /**
      * @param float $valor
      */
     public function sacar(float $valor): void
     {
         if ($this->saldo < $valor) {
-            echo "{$this->nome} - Saldo insuficiente." . PHP_EOL;
+            echo "{$this->titular->getNome()} - Saldo insuficiente." . PHP_EOL;
             return;
         }
 
@@ -121,7 +137,7 @@ class Conta
     public function depositar(float $valor): void
     {
         if (0 >= $valor) {
-            echo "{$this->nome} - Valor invalido." . PHP_EOL;
+            echo "{$this->titular->getNome()} - Valor invalido." . PHP_EOL;
             return;
         }
 
@@ -135,7 +151,7 @@ class Conta
     public function transferir(float $valor, Conta &$destino): void
     {
         if ($this->saldo < $valor) {
-            echo "{$this->nome} - Saldo insuficiente." . PHP_EOL;
+            echo "{$this->titular->getNome()} - Saldo insuficiente." . PHP_EOL;
             return;
         }
 
@@ -148,6 +164,7 @@ class Conta
      */
     public function __toString(): string
     {
-        return "Id: {$this->id}, Titular: {$this->nome}, CPF: {$this->cpf}, Saldo: {$this->saldo}" . PHP_EOL;
+        return "Nº: {$this->numero}, Titular: {$this->titular->getNome()}, "
+            . "CPF: {$this->titular->getCpf()}, Saldo: {$this->saldo}" . PHP_EOL;
     }
 }
