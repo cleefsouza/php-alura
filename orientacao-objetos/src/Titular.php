@@ -23,6 +23,11 @@ class Titular
     private string $nome;
 
     /**
+     * @var Endereco
+     */
+    private Endereco $endereco;
+
+    /**
      * @var int
      */
     protected static $sequence = 0;
@@ -31,12 +36,14 @@ class Titular
      * Titular constructor.
      * @param string $cpf
      * @param string $nome
+     * @param Endereco $endereco
      */
-    public function __construct(string $cpf, string $nome)
+    public function __construct(string $cpf, string $nome, Endereco $endereco)
     {
         $this->id = ++Titular::$sequence;
         $this->cpf = $cpf;
         $this->nome = $nome;
+        $this->endereco = $endereco;
     }
 
     /**
@@ -77,5 +84,21 @@ class Titular
     public function setNome(string $nome): void
     {
         $this->nome = $nome;
+    }
+
+    /**
+     * @return Endereco
+     */
+    public function getEndereco(): Endereco
+    {
+        return $this->endereco;
+    }
+
+    /**
+     * @param Endereco $endereco
+     */
+    public function setEndereco(Endereco $endereco): void
+    {
+        $this->endereco = $endereco;
     }
 }
