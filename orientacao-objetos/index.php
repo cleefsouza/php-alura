@@ -1,9 +1,11 @@
 <?php
 
-require_once "src/Endereco.php";
-require_once "src/Pessoa.php";
-require_once "src/Titular.php";
-require_once "src/Conta.php";
+require_once 'src/Model/Conta.php';
+require_once 'src/Model/Pessoa.php';
+require_once 'src/Model/Titular.php';
+require_once 'src/Model/Endereco.php';
+
+use Alura\Model\{Conta, Titular, Endereco};
 
 $mariaEndereco = new Endereco("Santa Rita", "Tibiri 2", "S/N", "79A");
 $pedroEndereco = new Endereco("João Pessoa", "Centro", "João Agripino", "12");
