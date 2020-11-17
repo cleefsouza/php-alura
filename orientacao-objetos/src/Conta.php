@@ -28,15 +28,19 @@ class Conta
     private float $saldo;
 
     /**
+     * @var int
+     */
+    protected static $sequence = 0;
+
+    /**
      * Conta constructor.
-     * @param int $id
      * @param string $cpf
      * @param string $nome
      * @param int $saldo
      */
-    public function __construct(int $id, string $cpf, string $nome, int $saldo = 0)
+    public function __construct(string $cpf, string $nome, int $saldo = 0)
     {
-        $this->id = $id;
+        $this->id = ++Conta::$sequence;
         $this->cpf = $cpf;
         $this->nome = $nome;
         $this->saldo = $saldo;
