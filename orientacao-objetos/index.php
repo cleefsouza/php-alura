@@ -1,9 +1,6 @@
 <?php
 
-require_once 'src/Model/Conta.php';
-require_once 'src/Model/Pessoa.php';
-require_once 'src/Model/Titular.php';
-require_once 'src/Model/Endereco.php';
+require_once "autoload.php";
 
 use Alura\Model\{Conta, Titular, Endereco};
 
