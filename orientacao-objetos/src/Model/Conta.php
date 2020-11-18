@@ -30,6 +30,11 @@ class Conta
     private Titular $titular;
 
     /**
+     * @var float
+     */
+    private float $tarifa;
+
+    /**
      * @var int
      */
     protected static $sequence = 0;
@@ -39,13 +44,15 @@ class Conta
      * @param Titular $titular
      * @param int $numero
      * @param int $saldo
+     * @param float $tarifa
      */
-    public function __construct(Titular $titular, int $numero, int $saldo = 0)
+    public function __construct(Titular $titular, int $numero, int $saldo = 0, float $tarifa = 0.05)
     {
         $this->id = ++Conta::$sequence;
         $this->titular = $titular;
         $this->numero = $numero;
         $this->saldo = $saldo;
+        $this->tarifa = $tarifa;
     }
 
     /**
@@ -105,19 +112,19 @@ class Conta
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public static function getSequence(): int
+    public function getTarifa(): float
     {
-        return self::$sequence;
+        return $this->tarifa;
     }
 
     /**
-     * @param int $sequence
+     * @param float $tarifa
      */
-    public static function setSequence(int $sequence): void
+    public function setTarifa(float $tarifa): void
     {
-        self::$sequence = $sequence;
+        $this->tarifa = $tarifa;
     }
 
     /**
@@ -130,7 +137,7 @@ class Conta
             return;
         }
 
-        $this->saldo -= $valor;
+        $this->saldo -= $valor + ($valor * $this->tarifa);
     }
 
     /**
