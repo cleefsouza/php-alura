@@ -6,6 +6,7 @@ namespace Alura\Model;
 
 /**
  * Class Conta
+ * @package Alura\Model
  */
 abstract class Conta
 {

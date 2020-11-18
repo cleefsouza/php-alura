@@ -6,6 +6,7 @@ namespace Alura\Model;
 
 /**
  * Class Endereco
+ * @package Alura\Model
  */
 class Endereco
 {

@@ -6,6 +6,7 @@ namespace Alura\Model;
 
 /**
  * Class Titular
+ * @package Alura\Model
  */
 class Titular extends Pessoa
 {

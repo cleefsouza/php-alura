@@ -24,7 +24,7 @@ class ContaCorrente extends Conta
     /**
      * @return float
      */
-    protected function getTarifa(): float
+    public function getTarifa(): float
     {
         return 0.05;
     }
