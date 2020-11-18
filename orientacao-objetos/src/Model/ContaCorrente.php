@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Alura\Model;
 
 /**
- * Class ContaPoupanca
+ * Class ContaCorrente
  * @package Alura\Model
  */
-class ContaPoupanca extends Conta
+class ContaCorrente extends Conta
 {
     /**
-     * ContaPoupanca constructor.
+     * ContaCorrente constructor.
      * @param Titular $titular
      * @param int $numero
      * @param int $saldo
@@ -26,6 +26,6 @@ class ContaPoupanca extends Conta
      */
     protected function getTarifa(): float
     {
-        return 0.02;
+        return 0.05;
     }
 }

@@ -7,7 +7,7 @@ namespace Alura\Model;
 /**
  * Class Conta
  */
-class Conta
+abstract class Conta
 {
     /**
      * @var int
@@ -44,15 +44,13 @@ class Conta
      * @param Titular $titular
      * @param int $numero
      * @param int $saldo
-     * @param float $tarifa
      */
-    public function __construct(Titular $titular, int $numero, int $saldo = 0, float $tarifa = 0.05)
+    public function __construct(Titular $titular, int $numero, int $saldo = 0)
     {
         $this->id = ++Conta::$sequence;
         $this->titular = $titular;
         $this->numero = $numero;
         $this->saldo = $saldo;
-        $this->tarifa = $tarifa;
     }
 
     /**
@@ -112,22 +110,6 @@ class Conta
     }
 
     /**
-     * @return float
-     */
-    public function getTarifa(): float
-    {
-        return $this->tarifa;
-    }
-
-    /**
-     * @param float $tarifa
-     */
-    public function setTarifa(float $tarifa): void
-    {
-        $this->tarifa = $tarifa;
-    }
-
-    /**
      * @param float $valor
      */
     public function sacar(float $valor): void
@@ -137,7 +119,7 @@ class Conta
             return;
         }
 
-        $this->saldo -= $valor + ($valor * $this->tarifa);
+        $this->saldo -= $valor + ($valor * $this->getTarifa());
     }
 
     /**
@@ -167,6 +149,12 @@ class Conta
         $this->sacar($valor);
         $destino->depositar($valor);
     }
+
+
+    /**
+     * @return float
+     */
+    abstract protected function getTarifa(): float;
 
     /**
      * @return string

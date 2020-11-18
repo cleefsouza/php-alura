@@ -2,7 +2,7 @@
 
 require_once "autoload.php";
 
-use Alura\Model\{Conta, Titular, Endereco, ContaPoupanca};
+use Alura\Model\{ContaCorrente, ContaPoupanca, Titular, Endereco};
 
 $mariaEndereco = new Endereco("Santa Rita", "Tibiri 2", "S/N", "79A");
 $pedroEndereco = new Endereco("João Pessoa", "Centro", "João Agripino", "12");
@@ -10,13 +10,13 @@ $pedroEndereco = new Endereco("João Pessoa", "Centro", "João Agripino", "12");
 $maria = new Titular("Maria", "123.456.789-10", $mariaEndereco);
 $pedro = new Titular("Pedro", "109.876.543-21", $pedroEndereco);
 
-$mariaConta = new Conta($maria, 77851, 100);
+$mariaConta = new ContaCorrente($maria, 77851, 100);
 $pedroConta = new ContaPoupanca($pedro, 65109);
 
 $mariaConta->depositar(75);
-$pedroConta->sacar(100);
-$mariaConta->transferir(75, $pedroConta);
-$pedroConta->sacar(25);
+$mariaConta->transferir(15, $pedroConta);
+$mariaConta->sacar(25);
+$pedroConta->sacar(3);
 
 echo $mariaConta->__toString();
 echo $pedroConta->__toString();
