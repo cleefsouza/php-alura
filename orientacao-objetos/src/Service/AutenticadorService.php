@@ -16,8 +16,9 @@ class AutenticadorService
      * @return string
      */
     public function logar(Funcionario $fun, string $pass): string
-
     {
-        return $fun->getPass() === $pass ? "Usuário {$fun->getNome()} logado." . PHP_EOL : "Acesso negado." . PHP_EOL;
+        return $fun->getPass() === $pass && $fun->isAuth()
+            ? "Usuário {$fun->getNome()} logado." . PHP_EOL
+            : "Acesso negado." . PHP_EOL;
     }
 }

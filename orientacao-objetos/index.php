@@ -27,7 +27,7 @@ $dev = new Desenvolvedor(
     "109.876.543-21",
     $pedroEndereco,
     "Desenvolvedor",
-    "123X",
+    "AUX12",
     1800
 );
 $gestor = new Gestor(
@@ -43,6 +43,7 @@ $service = new FuncionarioService();
 $auth = new AutenticadorService();
 
 echo $auth->logar($gestor, "AX789");
+echo $auth->logar($dev, "AX789");
 
 $service->subirNivel($dev);
 $service->subirNivel($gestor);

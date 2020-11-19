@@ -36,7 +36,7 @@ abstract class Funcionario extends Pessoa
      * @param string $cpf
      * @param Endereco $endereco
      * @param string $cargo
-     * @param string $pass
+     * @param string|null $pass
      * @param float $salario
      * @param int $nivel
      */
@@ -124,6 +124,14 @@ abstract class Funcionario extends Pessoa
      * @return float
      */
     abstract protected function getSalarioBonificacao(): float;
+
+    /**
+     * @return bool
+     */
+    public function isAuth(): bool
+    {
+        return false;
+    }
 
     /**
      * @return string
