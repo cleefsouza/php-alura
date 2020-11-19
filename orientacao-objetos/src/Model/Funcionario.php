@@ -106,7 +106,7 @@ abstract class Funcionario extends Pessoa
      */
     public function __toString(): string
     {
-        return "Cargo: {$this->cargo} Nv. {$this->nivel}, Funcionario: {$this->nome}"
+        return "Cargo: {$this->cargo} Nv. {$this->nivel}, Nome: {$this->nome}, "
             . "Salário: {$this->getSalarioBonificacao()}" . PHP_EOL;
     }
 }
