@@ -21,18 +21,31 @@ abstract class Funcionario extends Pessoa
     protected string $cargo;
 
     /**
+     * @var int
+     */
+    protected int $nivel;
+
+    /**
      * Funcionario constructor.
      * @param string $nome
      * @param string $cpf
      * @param Endereco $endereco
      * @param string $cargo
      * @param float $salario
+     * @param int $nivel
      */
-    public function __construct(string $nome, string $cpf, Endereco $endereco, string $cargo, float $salario)
-    {
+    public function __construct(
+        string $nome,
+        string $cpf,
+        Endereco $endereco,
+        string $cargo,
+        float $salario,
+        int $nivel = 1
+    ) {
         parent::__construct($nome, $cpf, $endereco);
         $this->salario = $salario;
         $this->cargo = $cargo;
+        $this->nivel = $nivel;
     }
 
     /**
@@ -68,6 +81,22 @@ abstract class Funcionario extends Pessoa
     }
 
     /**
+     * @return int
+     */
+    public function getNivel(): int
+    {
+        return $this->nivel;
+    }
+
+    /**
+     * @param int $nivel
+     */
+    public function setNivel(int $nivel): void
+    {
+        $this->nivel = $nivel;
+    }
+
+    /**
      * @return float
      */
     abstract protected function getSalarioBonificacao(): float;
@@ -77,6 +106,7 @@ abstract class Funcionario extends Pessoa
      */
     public function __toString(): string
     {
-        return "Cargo: {$this->cargo}, Funcionario: {$this->nome}, Salário: {$this->getSalarioBonificacao()}" . PHP_EOL;
+        return "Cargo: {$this->cargo} Nv. {$this->nivel}, Funcionario: {$this->nome}"
+            . "Salário: {$this->getSalarioBonificacao()}" . PHP_EOL;
     }
 }

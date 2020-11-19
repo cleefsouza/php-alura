@@ -3,6 +3,7 @@
 require_once "autoload.php";
 
 use Alura\Model\{ContaCorrente, ContaPoupanca, Titular, Endereco, Desenvolvedor, Gestor};
+use Alura\Service\FuncionarioService;
 
 $mariaEndereco = new Endereco("Santa Rita", "Tibiri 2", "S/N", "79A");
 $pedroEndereco = new Endereco("João Pessoa", "Centro", "João Agripino", "12");
@@ -35,6 +36,11 @@ $gestor = new Gestor(
     "Gestor",
     3000
 );
+
+$service = new FuncionarioService();
+
+$service->subirNivel($dev);
+$service->subirNivel($gestor);
 
 echo $dev->__toString();
 echo $gestor->__toString();
