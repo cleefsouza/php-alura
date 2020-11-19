@@ -16,11 +16,20 @@ class Gestor extends Funcionario
      * @param string $cpf
      * @param Endereco $endereco
      * @param string $cargo
+     * @param string $pass
      * @param float $salario
+     * @param int $nivel
      */
-    public function __construct(string $nome, string $cpf, Endereco $endereco, string $cargo, float $salario)
-    {
-        parent::__construct($nome, $cpf, $endereco, $cargo, $salario);
+    public function __construct(
+        string $nome,
+        string $cpf,
+        Endereco $endereco,
+        string $cargo,
+        string $pass,
+        float $salario,
+        int $nivel = 1
+    ) {
+        parent::__construct($nome, $cpf, $endereco, $cargo, $pass, $salario, $nivel);
     }
 
     /**

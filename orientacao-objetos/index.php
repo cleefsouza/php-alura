@@ -3,7 +3,7 @@
 require_once "autoload.php";
 
 use Alura\Model\{ContaCorrente, ContaPoupanca, Titular, Endereco, Desenvolvedor, Gestor};
-use Alura\Service\FuncionarioService;
+use Alura\Service\{FuncionarioService, AutenticadorService};
 
 $mariaEndereco = new Endereco("Santa Rita", "Tibiri 2", "S/N", "79A");
 $pedroEndereco = new Endereco("João Pessoa", "Centro", "João Agripino", "12");
@@ -27,6 +27,7 @@ $dev = new Desenvolvedor(
     "109.876.543-21",
     $pedroEndereco,
     "Desenvolvedor",
+    "123X",
     1800
 );
 $gestor = new Gestor(
@@ -34,10 +35,14 @@ $gestor = new Gestor(
     "123.456.789-10",
     $mariaEndereco,
     "Gestor",
+    "AX789",
     3000
 );
 
 $service = new FuncionarioService();
+$auth = new AutenticadorService();
+
+echo $auth->logar($gestor, "AX789");
 
 $service->subirNivel($dev);
 $service->subirNivel($gestor);

@@ -26,11 +26,17 @@ abstract class Funcionario extends Pessoa
     protected int $nivel;
 
     /**
+     * @var string
+     */
+    protected string $pass;
+
+    /**
      * Funcionario constructor.
      * @param string $nome
      * @param string $cpf
      * @param Endereco $endereco
      * @param string $cargo
+     * @param string $pass
      * @param float $salario
      * @param int $nivel
      */
@@ -39,6 +45,7 @@ abstract class Funcionario extends Pessoa
         string $cpf,
         Endereco $endereco,
         string $cargo,
+        string $pass,
         float $salario,
         int $nivel = 1
     ) {
@@ -46,6 +53,7 @@ abstract class Funcionario extends Pessoa
         $this->salario = $salario;
         $this->cargo = $cargo;
         $this->nivel = $nivel;
+        $this->pass = $pass;
     }
 
     /**
@@ -94,6 +102,22 @@ abstract class Funcionario extends Pessoa
     public function setNivel(int $nivel): void
     {
         $this->nivel = $nivel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPass(): string
+    {
+        return $this->pass;
+    }
+
+    /**
+     * @param string $pass
+     */
+    public function setPass(string $pass): void
+    {
+        $this->pass = $pass;
     }
 
     /**
