@@ -8,7 +8,7 @@ namespace Alura\Model;
  * Class Endereco
  * @package Alura\Model
  */
-class Endereco
+final class Endereco
 {
     /**
      * @var int
