@@ -19,8 +19,8 @@ $mariaConta->transferir(15, $pedroConta);
 $mariaConta->sacar(25);
 $pedroConta->sacar(3);
 
-echo $mariaConta->__toString();
-echo $pedroConta->__toString();
+echo $mariaConta;
+echo $pedroConta;
 
 $dev = new Desenvolvedor(
     "Pedro",
@@ -48,5 +48,5 @@ echo $auth->logar($dev, "AX789");
 $service->subirNivel($dev);
 $service->subirNivel($gestor);
 
-echo $dev->__toString();
-echo $gestor->__toString();
+echo $dev;
+echo $gestor;
