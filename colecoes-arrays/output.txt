@@ -1,0 +1,55 @@
+A média das notas foi 7.4
+Saldo: 1000
+Saldo: 2550
+Saldo: 3000
+Saldo: 4400
+Saldo: 8700
+Saldo: 9000
+Array
+(
+    [0] => Giovanni
+    [1] => João
+    [2] => Maria
+    [3] => Pedro
+    [4] => Marcos
+    [5] => Ary
+)
+Ary - Giovanni - João - Marcos - Maria - Pedro
+50 removido(a) com sucesso
+Array
+(
+    [0] => 1
+    [1] => 2
+    [2] => 3
+    [3] => João
+    [4] => Marcos
+    [6] => Maria
+    [7] => 50
+)
+Array
+(
+    [Ary] => 1000
+    [Giovanni] => 2550
+    [João] => 3000
+    [Marcos] => 4400
+    [Maria] => 8700
+    [Pedro] => 9000
+)
+Array
+(
+    [0] => Banana
+    [1] => Maçã
+    [2] => Abacaxi
+)
+Array
+(
+    [0] => Banana
+    [1] => Maçã
+    [2] => Abacaxi
+    [3] => Uva
+    [4] => Limão
+    [5] => Limão
+    [6] => Uva
+    [7] => Morango
+    [8] => Romã
+)
