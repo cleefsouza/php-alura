@@ -21,7 +21,7 @@ array_map(
     $saldos
 );
 
-$nomes = "Giovanni, João, Maria, Pedro";
+$nomes = "Giovanni, João, Maria, Pedro, Marcos, Ary";
 
 $nomesArray = explode(", ", $nomes);
 print_r($nomesArray);
@@ -35,3 +35,15 @@ $aleatorio = [1, 2, 3, "João", "Marcos", 50, "Maria", "50"];
 
 ArrayUtils::delElemento(50, $aleatorio);
 print_r($aleatorio);
+
+$arrayAssociativo = array_combine($nomesArray, $saldos);
+print_r($arrayAssociativo);
+
+$frutas = ["Banana", "Maçã", "Abacaxi", "Uva", "Limão"];
+$azedas = ["Limão", "Uva", "Morango", "Romã"];
+
+$boas = array_diff($frutas, $azedas);
+print_r($boas);
+
+$cesta = array_merge($frutas, $azedas);
+print_r($cesta);
