@@ -12,7 +12,7 @@ class Calculadora
      * @param array $values
      * @return float|null
      */
-    public function calcularMedia(array $values): ?float
+    public static function calcularMedia(array $values): ?float
     {
         $qtd = sizeof($values);
 
