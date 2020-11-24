@@ -1,0 +1,6 @@
+Nº: 77851, Titular: Maria, CPF: 123.456.789-10, Saldo: 133
+Nº: 65109, Titular: Pedro, CPF: 109.876.543-21, Saldo: 11.94
+Usuário Maria logado.
+Acesso negado.
+Cargo: Desenvolvedor Nv. 2, Nome: Pedro, Salário: 2925
+Cargo: Gestor Nv. 2, Nome: Maria, Salário: 6375
