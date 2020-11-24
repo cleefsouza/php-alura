@@ -1,6 +1,10 @@
 Iniciando o programa principal
 Entrei na função 1
 Entrei na função 2
-Na função 1, eu resolvi o problema da função 2
+Na função 1, eu resolvi o problema da função 2 (Msg: Division by zero, Line: 22)
+#0 /home/aryosvalldocleef/Documentos/Treinamento/Github/php-alura/php-exceptions/pilha.php(22): intdiv(5, 0)
+#1 /home/aryosvalldocleef/Documentos/Treinamento/Github/php-alura/php-exceptions/pilha.php(8): funcao2()
+#2 /home/aryosvalldocleef/Documentos/Treinamento/Github/php-alura/php-exceptions/pilha.php(35): funcao1()
+#3 {main}
 Saindo da função 1
 Finalizando o programa principal

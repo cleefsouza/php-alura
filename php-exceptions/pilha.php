@@ -6,8 +6,10 @@ function funcao1()
 
     try {
         funcao2();
-    } catch (RuntimeException | DivisionByZeroError $exp) { // multi catch
-        echo "Na função 1, eu resolvi o problema da função 2" . PHP_EOL;
+    } catch (RuntimeException | DivisionByZeroError $expOrError) { // multi catch
+        echo "Na função 1, eu resolvi o problema da função 2 "
+            . "(Msg: {$expOrError->getMessage()}, Line: {$expOrError->getLine()})" . PHP_EOL;
+        echo $expOrError->getTraceAsString() . PHP_EOL;
     }
 
     echo "Saindo da função 1" . PHP_EOL;
