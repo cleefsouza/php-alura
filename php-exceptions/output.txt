@@ -1,0 +1,6 @@
+Iniciando o programa principal
+Entrei na função 1
+Entrei na função 2
+Na função 1, eu resolvi o problema da função 2
+Saindo da função 1
+Finalizando o programa principal
