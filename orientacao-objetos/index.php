@@ -15,16 +15,20 @@ $pedro = new Titular("Pedro", "109.876.543-21", $pedroEndereco);
 $mariaConta = new ContaCorrente($maria, 77851, 100);
 $pedroConta = new ContaPoupanca($pedro, 65109);
 
+$mariaConta->sacar(25);
+$mariaConta->depositar(75);
+$mariaConta->transferir(15, $pedroConta);
+$pedroConta->sacar(3);
+
 try {
-    $mariaConta->sacar(25);
-    $mariaConta->depositar(75);
-    $mariaConta->transferir(15, $pedroConta);
-
-    $pedroConta->sacar(3);
     $pedroConta->sacar(1500);
+} catch (SaldoInsuficienteException $exp) {
+    echo $exp->getMessage() . PHP_EOL;
+}
 
+try {
     $mariaConta->depositar(0);
-} catch (SaldoInsuficienteException | InvalidArgumentException $exp) {
+} catch (InvalidArgumentException $exp) {
     echo $exp->getMessage() . PHP_EOL;
 }
 

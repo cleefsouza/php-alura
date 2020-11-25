@@ -1,3 +1,5 @@
+Saldo insuficiente.
+Valor invalido.
 Nº: 77851, Titular: Maria, CPF: 123.456.789-10, Saldo: 133
 Nº: 65109, Titular: Pedro, CPF: 109.876.543-21, Saldo: 11.94
 Usuário Maria logado.
