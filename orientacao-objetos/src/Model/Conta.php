@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Alura\Model;
 
+use Alura\Exception\SaldoInsuficienteException;
+use InvalidArgumentException;
+
 /**
  * Class Conta
  * @package Alura\Model
@@ -116,8 +119,7 @@ abstract class Conta
     public function sacar(float $valor): void
     {
         if ($this->saldo < $valor) {
-            echo "{$this->titular->getNome()} - Saldo insuficiente." . PHP_EOL;
-            return;
+            throw new SaldoInsuficienteException();
         }
 
         $this->saldo -= $valor + ($valor * $this->getTarifa());
@@ -129,8 +131,7 @@ abstract class Conta
     public function depositar(float $valor): void
     {
         if (0 >= $valor) {
-            echo "{$this->titular->getNome()} - Valor invalido." . PHP_EOL;
-            return;
+            throw new InvalidArgumentException("Valor invalido.");
         }
 
         $this->saldo += $valor;
@@ -143,8 +144,7 @@ abstract class Conta
     public function transferir(float $valor, Conta &$destino): void
     {
         if ($this->saldo < $valor) {
-            echo "{$this->titular->getNome()} - Saldo insuficiente." . PHP_EOL;
-            return;
+            throw new SaldoInsuficienteException();
         }
 
         $this->sacar($valor);

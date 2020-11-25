@@ -4,6 +4,7 @@ require_once "autoload.php";
 
 use Alura\Model\{ContaCorrente, ContaPoupanca, Titular, Endereco, Desenvolvedor, Gestor};
 use Alura\Service\{FuncionarioService, AutenticadorService};
+use Alura\Exception\SaldoInsuficienteException;
 
 $mariaEndereco = new Endereco("Santa Rita", "Tibiri 2", "S/N", "79A");
 $pedroEndereco = new Endereco("João Pessoa", "Centro", "João Agripino", "12");
@@ -14,10 +15,18 @@ $pedro = new Titular("Pedro", "109.876.543-21", $pedroEndereco);
 $mariaConta = new ContaCorrente($maria, 77851, 100);
 $pedroConta = new ContaPoupanca($pedro, 65109);
 
-$mariaConta->depositar(75);
-$mariaConta->transferir(15, $pedroConta);
-$mariaConta->sacar(25);
-$pedroConta->sacar(3);
+try {
+    $mariaConta->sacar(25);
+    $mariaConta->depositar(75);
+    $mariaConta->transferir(15, $pedroConta);
+
+    $pedroConta->sacar(3);
+    $pedroConta->sacar(1500);
+
+    $mariaConta->depositar(0);
+} catch (SaldoInsuficienteException | InvalidArgumentException $exp) {
+    echo $exp->getMessage() . PHP_EOL;
+}
 
 echo $mariaConta;
 echo $pedroConta;

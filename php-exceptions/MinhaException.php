@@ -13,5 +13,5 @@ class MinhaException extends DomainException
 try {
     throw new MinhaException();
 } catch (MinhaException $exp) {
-    $exp->showExp();
+    $exp->showExp(); // output: Errou!
 }
