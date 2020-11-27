@@ -2,22 +2,19 @@
 
 require "vendor/autoload.php";
 
+use Alura\Composer\Buscador;
 use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
 
 $lang = "php";
-$cli = new Client();
+$base_uri = "https://www.alura.com.br/";
 
-$req = $cli
-    ->request(
-        "get",
-        "https://www.alura.com.br/cursos-online-programacao/{$lang}"
-    );
+$crawler = new Crawler();
+$client = new Client(["base_uri" => $base_uri]);
+$buscador = new Buscador($client, $crawler);
 
-$cra = new Crawler();
-$cra->addHtmlContent($req->getBody());
-$cursos = $cra->filter("span.card-curso__nome");
+$cursos = $buscador->buscar("cursos-online-programacao/{$lang}");
 
 foreach ($cursos as $cur) {
-    echo $cur->textContent . PHP_EOL;
+    echo $cur . PHP_EOL;
 }
