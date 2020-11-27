@@ -1,0 +1,17 @@
+{
+  "name": "cleefsouza/alura-cursos",
+  "license": "",
+  "description": "Projeto que busca os cursos no site da Alura",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Cleef Souza",
+      "email": "a.cleef.souza@gmail.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^7.2",
+    "symfony/dom-crawler": "^5.1",
+    "symfony/css-selector": "^5.1"
+  }
+}
