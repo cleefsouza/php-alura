@@ -23,5 +23,10 @@
     "phpunit/phpunit": "^9.4",
     "squizlabs/php_codesniffer": "*",
     "phan/phan": "^3.2"
+  },
+  "scripts": {
+    "test": "phpunit tests/BuscadorTest.php",
+    "codesniffer": "phpcs --standard=PSR12 src/",
+    "phan": "phan --allow-polyfill-parser"
   }
 }
