@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fdb8c7a4371c11118a0a02d30c1c207",
+    "content-hash": "3651833e774c88e9ec597b574a76ce77",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -349,16 +349,16 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v5.1.8",
+            "version": "v5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "6cbebda22ffc0d4bb8fea0c1311c2ca54c4c8fa0"
+                "reference": "b8d8eb06b0942e84a69e7acebc3e9c1e6e6e7256"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/6cbebda22ffc0d4bb8fea0c1311c2ca54c4c8fa0",
-                "reference": "6cbebda22ffc0d4bb8fea0c1311c2ca54c4c8fa0",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/b8d8eb06b0942e84a69e7acebc3e9c1e6e6e7256",
+                "reference": "b8d8eb06b0942e84a69e7acebc3e9c1e6e6e7256",
                 "shasum": ""
             },
             "require": {
@@ -393,11 +393,11 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2020-10-24T12:01:57+00:00"
+            "time": "2020-10-28T21:31:18+00:00"
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v5.1.8",
+            "version": "v5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
@@ -2268,6 +2268,57 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2020-09-28T06:39:44+00:00"
+        },
+        {
+            "name": "squizlabs/php_codesniffer",
+            "version": "3.5.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+                "reference": "9d583721a7157ee997f235f327de038e7ea6dac4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/9d583721a7157ee997f235f327de038e7ea6dac4",
+                "reference": "9d583721a7157ee997f235f327de038e7ea6dac4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*",
+                "ext-tokenizer": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
+            },
+            "bin": [
+                "bin/phpcs",
+                "bin/phpcbf"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Sherwood",
+                    "role": "lead"
+                }
+            ],
+            "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
+            "homepage": "https://github.com/squizlabs/PHP_CodeSniffer",
+            "keywords": [
+                "phpcs",
+                "standards"
+            ],
+            "time": "2020-10-23T02:01:07+00:00"
         },
         {
             "name": "theseer/tokenizer",
