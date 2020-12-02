@@ -21,6 +21,7 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^9.4",
-    "squizlabs/php_codesniffer": "*"
+    "squizlabs/php_codesniffer": "*",
+    "phan/phan": "^3.2"
   }
 }
