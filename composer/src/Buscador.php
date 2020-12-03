@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Alura\Composer;
 
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -17,9 +16,9 @@ class Buscador
     public const SELETOR = "span.card-curso__nome";
 
     /**
-     * @var ClientInterface
+     * @var Client
      */
-    private ClientInterface $client;
+    private Client $client;
 
     /**
      * @var Crawler
@@ -28,10 +27,10 @@ class Buscador
 
     /**
      * Buscador constructor.
-     * @param ClientInterface $client
+     * @param Client $client
      * @param Crawler $crawler
      */
-    public function __construct(ClientInterface $client, Crawler $crawler)
+    public function __construct(Client $client, Crawler $crawler)
     {
         $this->client = $client;
         $this->crawler = $crawler;
@@ -40,7 +39,6 @@ class Buscador
     /**
      * @param string $url
      * @return array
-     * @throws GuzzleException
      */
     public function buscar(string $url): array
     {

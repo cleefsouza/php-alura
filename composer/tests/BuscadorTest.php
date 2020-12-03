@@ -1,8 +1,8 @@
 <?php
 
 use Alura\Composer\Buscador;
-use GuzzleHttp\ClientInterface;
-use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Client;
+use PHPUnit\Framework\{MockObject\MockObject, TestCase};
 use Psr\Http\Message\{ResponseInterface, StreamInterface};
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -11,7 +11,14 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 class BuscadorTest extends TestCase
 {
-    private $httpClientMock;
+    /**
+     * @var Client|MockObject
+     */
+    private MockObject $httpClientMock;
+
+    /**
+     * @var string
+     */
     private string $url = "url-teste";
 
     protected function setUp(): void
@@ -40,7 +47,7 @@ class BuscadorTest extends TestCase
             ->willReturn($stream);
 
         $httpClient = $this
-            ->createMock(ClientInterface::class);
+            ->createMock(Client::class);
 
         $httpClient
             ->expects($this->once())
