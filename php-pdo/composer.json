@@ -1,0 +1,18 @@
+{
+  "name": "alura/php-pdo",
+  "license": "",
+  "description": "PHP e PDO: trabalhando com banco de dados",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Cleef Souza",
+      "email": "a.cleef.souza@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Alura\\PDO\\": "src/"
+    }
+  }
+}
