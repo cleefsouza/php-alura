@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Alura\Composer;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -39,6 +40,7 @@ class Buscador
     /**
      * @param string $url
      * @return array
+     * @throws GuzzleException
      */
     public function buscar(string $url): array
     {

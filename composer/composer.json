@@ -1,6 +1,6 @@
 {
   "name": "cleefsouza/alura-cursos",
-  "license": "",
+  "license": "GPL-3.0",
   "description": "Projeto que busca os cursos no site da Alura",
   "type": "library",
   "authors": [
@@ -36,5 +36,6 @@
   },
   "scripts-descriptions" : {
     "check": "Verifica se o código esta apto para produção."
-  }
+  },
+  "bin": ["index.php"]
 }
