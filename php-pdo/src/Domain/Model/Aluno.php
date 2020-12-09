@@ -7,15 +7,15 @@ namespace Alura\PDO\Domain\Model;
 use DateTime;
 
 /**
- * Class Estudante
+ * Class Aluno
  * @package Alura\PDO
  */
-class Estudante
+class Aluno
 {
     /**
-     * @var int
+     * @var int|null
      */
-    private int $id;
+    private ?int $id;
 
     /**
      * @var string
@@ -28,12 +28,12 @@ class Estudante
     private DateTime $nascimento;
 
     /**
-     * Estudante constructor.
-     * @param int $id
+     * Aluno constructor.
+     * @param int|null $id
      * @param string $nome
      * @param DateTime $nascimento
      */
-    public function __construct(int $id, string $nome, DateTime $nascimento)
+    public function __construct(?int $id, string $nome, DateTime $nascimento)
     {
         $this->id = $id;
         $this->nome = $nome;
@@ -41,17 +41,17 @@ class Estudante
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
