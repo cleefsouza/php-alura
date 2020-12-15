@@ -87,4 +87,9 @@ class Aluno
     {
         $this->nascimento = $nascimento;
     }
+
+    public function getIdade(): int
+    {
+        return $this->getNascimento()->diff(new DateTime("NOW"))->y;
+    }
 }
