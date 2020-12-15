@@ -1,11 +1,11 @@
 <?php
 
 use Alura\PDO\Domain\Model\Aluno;
+use Alura\PDO\Infrastructure\Persistence\Connection;
 
 require_once "vendor/autoload.php";
 
-$path = __DIR__ . "/db.sqlite";
-$pdo = new PDO("sqlite:" . $path);
+$pdo = Connection::criarConexao();
 
 $aluno = new Aluno(null, "Cleef Souza", new DateTime("1995-07-03"));
 print_r($aluno);
