@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Alura\PDO\Infrastructure\Persistence\Repository;
 
-use Alura\PDO\Domain\Model\Aluno;
-use Alura\PDO\Domain\Repository\AlunoRepositoryInterface;
+use Alura\PDO\Domain\{
+    Model\Aluno,
+    Repository\AlunoRepositoryInterface
+};
 use Alura\PDO\Infrastructure\Persistence\Connection;
 use DateTime;
 use PDO;
+use RuntimeException;
 
 /**
  * Class AlunoRepository
@@ -58,13 +61,22 @@ class AlunoRepository implements AlunoRepositoryInterface
      */
     public function salvar(Aluno $aluno): void
     {
-        if (!empty($aluno->getId())) {
-            $this->update($aluno);
+        try {
+            $this->pdo->beginTransaction();
 
-            return;
+            if (!empty($aluno->getId())) {
+                $this->update($aluno);
+
+                return;
+            }
+
+            $this->insert($aluno);
+
+            $this->pdo->commit();
+        } catch (RuntimeException $e) {
+            echo $e->getMessage();
+            $this->pdo->rollBack();
         }
-
-        $this->insert($aluno);
     }
 
     /**
@@ -72,12 +84,21 @@ class AlunoRepository implements AlunoRepositoryInterface
      */
     public function remover(Aluno $aluno): void
     {
-        $sql = "DELETE FROM aluno WHERE id = ?";
+        try {
+            $this->pdo->beginTransaction();
 
-        $stm = $this->pdo->prepare($sql);
-        $stm->bindValue(1, 5, PDO::PARAM_INT);
+            $sql = "DELETE FROM aluno WHERE id = ?";
 
-        $stm->execute();
+            $stm = $this->pdo->prepare($sql);
+            $stm->bindValue(1, 5, PDO::PARAM_INT);
+
+            $stm->execute();
+
+            $this->pdo->commit();
+        } catch (RuntimeException $e) {
+            echo $e->getMessage();
+            $this->pdo->rollBack();
+        }
     }
 
     /**
