@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Alura\PDO\Infrastructure\Persistence\Repository;
+namespace Alura\PDO\Infrastructure\Repository;
 
 use Alura\PDO\Domain\{
     Model\Aluno,
