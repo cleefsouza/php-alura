@@ -11,6 +11,7 @@ use Alura\PDO\Domain\{
 use Alura\PDO\Infrastructure\Persistence\Connection;
 use DateTime;
 use PDO;
+use PDOException;
 use RuntimeException;
 
 /**
@@ -73,7 +74,7 @@ class AlunoRepository implements AlunoRepositoryInterface
             $this->insert($aluno);
 
             $this->pdo->commit();
-        } catch (RuntimeException $e) {
+        } catch (RuntimeException|PDOException $e) {
             echo $e->getMessage();
             $this->pdo->rollBack();
         }
@@ -95,7 +96,7 @@ class AlunoRepository implements AlunoRepositoryInterface
             $stm->execute();
 
             $this->pdo->commit();
-        } catch (RuntimeException $e) {
+        } catch (RuntimeException|PDOException $e) {
             echo $e->getMessage();
             $this->pdo->rollBack();
         }

@@ -17,6 +17,10 @@ class Connection
     public static function criarConexao(): PDO
     {
         $path = __DIR__ . "/../../../db.sqlite";
-        return new PDO("sqlite:" . $path);
+
+        $pdo = new PDO("sqlite:" . $path);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        return $pdo;
     }
 }
