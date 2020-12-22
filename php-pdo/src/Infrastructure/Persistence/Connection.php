@@ -24,4 +24,15 @@ class Connection
 
         return $pdo;
     }
+
+    /**
+     * @param string $table
+     */
+    public static function deleteAll(string $table): void
+    {
+        $path = __DIR__ . "/../../../db.sqlite";
+
+        $pdo = new PDO("sqlite:" . $path);
+        $pdo->exec("DELETE FROM {$table}");
+    }
 }

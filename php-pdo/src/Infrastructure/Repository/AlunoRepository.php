@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Alura\PDO\Infrastructure\Repository;
 
-use Alura\PDO\Domain\{
-    Model\Aluno,
-    Repository\AlunoRepositoryInterface
-};
+use Alura\PDO\Domain\{Model\Aluno, Repository\AlunoRepositoryInterface};
 use Alura\PDO\Infrastructure\Persistence\Connection;
 use DateTime;
 use PDO;
@@ -26,11 +23,17 @@ class AlunoRepository implements AlunoRepositoryInterface
     private PDO $pdo;
 
     /**
+     * @var TelefoneRepository
+     */
+    private TelefoneRepository $telefoneRepository;
+
+    /**
      * AlunoRepository constructor.
      */
     public function __construct()
     {
         $this->pdo = Connection::criarConexao();
+        $this->telefoneRepository = new TelefoneRepository();
     }
 
     /**
@@ -38,7 +41,7 @@ class AlunoRepository implements AlunoRepositoryInterface
      */
     public function listar(): array
     {
-        $sql = "SELECT * FROM aluno";
+        $sql = "SELECT a.*, t.* FROM aluno a LEFT JOIN telefone t ON t.aluno_id = a.id";
         $stm = $this->pdo->query($sql);
 
         return $stm->fetchAll();
@@ -50,7 +53,8 @@ class AlunoRepository implements AlunoRepositoryInterface
      */
     public function alunosPorNascimento(DateTime $nascimento): array
     {
-        $sql = "SELECT * FROM aluno WHERE nascimento = ?";
+        $sql = "SELECT a.*, t.* FROM aluno a LEFT JOIN telefone t ON telefone.aluno_id = aluno.id WHERE a.nascimento = ?";
+
         $stm = $this->pdo->query($sql);
         $stm->bindValue(1, $nascimento->format("Y-m-d"));
 

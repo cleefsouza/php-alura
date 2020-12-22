@@ -28,7 +28,7 @@ class Aluno
     private DateTime $nascimento;
 
     /**
-     * @var array[]
+     * @var array
      */
     private array $telefones = [];
 
@@ -99,7 +99,7 @@ class Aluno
     }
 
     /**
-     * @return array[]
+     * @return array
      */
     public function getTelefones(): array
     {
@@ -107,10 +107,18 @@ class Aluno
     }
 
     /**
-     * @param array[] $telefones
+     * @param array $telefones
      */
     public function setTelefones(array $telefones): void
     {
         $this->telefones = $telefones;
+    }
+
+    /**
+     * @param Telefone $telefone
+     */
+    public function addTelefone(Telefone $telefone): void
+    {
+        $this->telefones[] = $telefone;
     }
 }

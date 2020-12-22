@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Alura\PDO\Domain\Model;
 
 /**
@@ -21,19 +23,19 @@ class Telefone
     /**
      * @var string
      */
-    private string $telefone;
+    private string $numero;
 
     /**
      * Telefone constructor.
-     * @param int $id
+     * @param int|null $id
      * @param string $ddd
-     * @param string $telefone
+     * @param string $numero
      */
-    public function __construct(int $id,string $ddd,string $telefone)
+    public function __construct(?int $id, string $ddd, string $numero)
     {
         $this->id = $id;
         $this->ddd = $ddd;
-        $this->telefone = $telefone;
+        $this->numero = $numero;
     }
 
     /**
@@ -71,21 +73,24 @@ class Telefone
     /**
      * @return string
      */
-    public function getTelefone(): string
+    public function getNumero(): string
     {
-        return $this->telefone;
+        return $this->numero;
     }
 
     /**
-     * @param string $telefone
+     * @param string $numero
      */
-    public function setTelefone(string $telefone): void
+    public function setNumero(string $numero): void
     {
-        $this->telefone = $telefone;
+        $this->numero = $numero;
     }
 
+    /**
+     * @return string
+     */
     public function formatarTelefone(): string
     {
-        return "($this->ddd) $this->telefone";
+        return "($this->ddd) $this->numero";
     }
 }
