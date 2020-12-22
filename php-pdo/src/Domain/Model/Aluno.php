@@ -28,6 +28,11 @@ class Aluno
     private DateTime $nascimento;
 
     /**
+     * @var array[]
+     */
+    private array $telefones = [];
+
+    /**
      * Aluno constructor.
      * @param int|null $id
      * @param string $nome
@@ -91,5 +96,21 @@ class Aluno
     public function getIdade(): int
     {
         return $this->getNascimento()->diff(new DateTime("NOW"))->y;
+    }
+
+    /**
+     * @return array[]
+     */
+    public function getTelefones(): array
+    {
+        return $this->telefones;
+    }
+
+    /**
+     * @param array[] $telefones
+     */
+    public function setTelefones(array $telefones): void
+    {
+        $this->telefones = $telefones;
     }
 }

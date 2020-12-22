@@ -41,7 +41,7 @@ class AlunoRepository implements AlunoRepositoryInterface
         $sql = "SELECT * FROM aluno";
         $stm = $this->pdo->query($sql);
 
-        return $stm->fetchAll(PDO::FETCH_ASSOC);
+        return $stm->fetchAll();
     }
 
     /**
@@ -54,7 +54,7 @@ class AlunoRepository implements AlunoRepositoryInterface
         $stm = $this->pdo->query($sql);
         $stm->bindValue(1, $nascimento->format("Y-m-d"));
 
-        return $stm->fetchAll(PDO::FETCH_ASSOC);
+        return $stm->fetchAll();
     }
 
     /**
