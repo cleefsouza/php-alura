@@ -4,26 +4,24 @@ declare(strict_types=1);
 
 namespace Alura\Doctrine\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
+ * @Entity
  * Class Aluno
  * @package Alura\Doctrine\Entity
- * @ORM\Entity()
  */
 class Aluno
 {
     /**
      * @var int
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
+     * @Column(type="integer")
      */
     private int $id;
 
     /**
      * @var string
-     * @ORM\Column(name="nome", type="string", nullable=false)
+     * @Column(name="nome", type="string", nullable=false)
      */
     private string $nome;
 
