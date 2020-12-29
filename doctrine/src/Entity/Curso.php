@@ -29,10 +29,13 @@ class Curso
 
     /**
      * @var Collection|null
-     * @ManyToMany(targetEntity="Aluno", inversedBy="cursos")
+     * @ManyToMany(targetEntity="Aluno", inversedBy="cursos", fetch="LAZY")
      */
     private ?Collection $alunos;
 
+    /**
+     * Curso constructor.
+     */
     public function __construct()
     {
         $this->alunos = new ArrayCollection();

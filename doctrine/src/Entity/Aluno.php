@@ -7,7 +7,7 @@ namespace Alura\Doctrine\Entity;
 use Doctrine\Common\Collections\{ArrayCollection, Collection};
 
 /**
- * @Entity
+ * @Entity(repositoryClass="Alura\Doctrine\Repository\AlunoRepository")
  * Class Aluno
  * @package Alura\Doctrine\Entity
  */
@@ -35,7 +35,7 @@ class Aluno
 
     /**
      * @var Collection|null
-     * @OneToMany(targetEntity="Curso", mappedBy="cursos")
+     * @OneToMany(targetEntity="Curso", mappedBy="cursos", fetch="LAZY")
      */
     private ?Collection $cursos;
 
