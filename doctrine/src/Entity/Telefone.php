@@ -40,16 +40,6 @@ class Telefone
     }
 
     /**
-     * @param int $id
-     * @return Telefone
-     */
-    public function setId(int $id): Telefone
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getNumero(): string

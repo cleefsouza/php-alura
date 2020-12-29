@@ -34,11 +34,18 @@ class Aluno
     private ?Collection $telefones;
 
     /**
+     * @var Collection|null
+     * @OneToMany(targetEntity="Curso", mappedBy="cursos")
+     */
+    private ?Collection $cursos;
+
+    /**
      * Aluno constructor.
      */
     public function __construct()
     {
         $this->telefones = new ArrayCollection();
+        $this->cursos = new ArrayCollection();
     }
 
     /**
@@ -79,6 +86,23 @@ class Aluno
     public function setTelefones($telefones): void
     {
         $this->telefones = $telefones;
-        array_map(fn($tel) => $tel->setAluno($this), $this->telefones);
+        array_map(fn($tel) => $tel->setAluno($this), $this->telefones->toArray());
+    }
+
+    /**
+     * @return Collection|null
+     */
+    public function getCursos(): ?Collection
+    {
+        return $this->cursos;
+    }
+
+    /**
+     * @param Collection|null $cursos
+     */
+    public function setCursos(?Collection $cursos): void
+    {
+        $this->cursos = $cursos;
+        $this->cursos->map(fn($cur) => $cur->getAlunos()->add($this));
     }
 }
