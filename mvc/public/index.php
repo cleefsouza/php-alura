@@ -1,11 +1,16 @@
 <?php
 
+require __DIR__ . "/../vendor/autoload.php";
+
+use Alura\MVC\Controller\CursoController;
+use Alura\MVC\Controller\FormularioController;
+
 switch ($_SERVER["PATH_INFO"]) {
     case "/curso/listar":
-        require "listar-cursos.php";
+        (new CursoController())->listar();
         break;
     case "/curso/adicionar":
-        require "adicionar-curso.php";
+        (new CursoController())->form();
         break;
     default:
         echo "<h1>Página não encontrada: 404</h1>";
