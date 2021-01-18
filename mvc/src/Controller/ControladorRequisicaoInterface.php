@@ -17,4 +17,9 @@ interface ControladorRequisicaoInterface
      * Formulário de cadastro
      */
     public function form(): void;
+
+    /**
+     * Salvar curso
+     */
+    public function salvar(): void;
 }

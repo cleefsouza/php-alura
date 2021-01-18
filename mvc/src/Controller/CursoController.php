@@ -6,7 +6,7 @@ namespace Alura\MVC\Controller;
 
 use Alura\MVC\Entity\Curso;
 use Alura\MVC\Infrastructure\EntityManagerFactory;
-use Doctrine\ORM\ORMException;
+use Doctrine\ORM\{EntityManagerInterface, ORMException};
 
 /**
  * Class CursoController
@@ -15,9 +15,9 @@ use Doctrine\ORM\ORMException;
 class CursoController implements ControladorRequisicaoInterface
 {
     /**
-     * @var mixed
+     * @var EntityManagerInterface
      */
-    private $cursoRepository;
+    private EntityManagerInterface $entityManager;
 
     /**
      * CursoController constructor.
@@ -25,9 +25,7 @@ class CursoController implements ControladorRequisicaoInterface
      */
     public function __construct()
     {
-        $this->cursoRepository = (new EntityManagerFactory())
-            ->getEntityManager()
-            ->getRepository(Curso::class);
+        $this->entityManager = (new EntityManagerFactory())->getEntityManager();
     }
 
     /**
@@ -36,7 +34,7 @@ class CursoController implements ControladorRequisicaoInterface
     public function listar(): void
     {
         $titulo = "Listar cursos";
-        $cursos = $this->cursoRepository->findAll();
+        $cursos = $this->entityManager->getRepository(Curso::class)->findAll();
         require __DIR__ . "/../../view/curso/listar.php";
     }
 
@@ -47,5 +45,17 @@ class CursoController implements ControladorRequisicaoInterface
     {
         $titulo = "Novo curso";
         require __DIR__ . "/../../view/curso/form.php";
+    }
+
+    /**
+     * Salvar curso
+     */
+    public function salvar(): void
+    {
+        $curso = new Curso();
+        $curso->setNome($_POST["nome"]);
+
+        $this->entityManager->persist($curso);
+        $this->entityManager->flush();
     }
 }
