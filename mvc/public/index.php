@@ -16,6 +16,6 @@ switch ($_SERVER["PATH_INFO"]) {
         (new CursoController())->salvar();
         break;
     default:
-        echo "<h1>Página não encontrada: 404</h1>";
+        require __DIR__ . "/../view/erro404.php";
         break;
 }
