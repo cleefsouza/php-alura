@@ -22,4 +22,9 @@ interface ControladorRequisicaoInterface
      * Salvar curso
      */
     public function salvar(): void;
+
+    /**
+     * Remover curso
+     */
+    public function remover(): void;
 }

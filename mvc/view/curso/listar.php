@@ -6,6 +6,7 @@
     <?php foreach ($cursos as $curso): ?>
         <li class="list-group-item">
             <?= $curso->getNome(); ?>
+            <a href="/curso/remover?id=<?= $curso->getId(); ?>" class="btn btn-danger btn-sm float-right">Remover</a>
         </li>
     <?php endforeach; ?>
 </ul>

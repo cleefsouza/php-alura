@@ -66,4 +66,25 @@ class CursoController implements ControladorRequisicaoInterface
 
         header("Location: /curso/listar", true, 302);
     }
+
+    /**
+     * Remover curso
+     */
+    public function remover(): void
+    {
+        $id = filter_input(
+            INPUT_GET,
+            "id",
+            FILTER_VALIDATE_INT
+        );
+
+        if (empty($id)) header("Location: /curso/listar", true, 404);
+
+        $curso = $this->entityManager->getReference(Curso::class, $id);
+
+        $this->entityManager->remove($curso);
+        $this->entityManager->flush();
+
+        header("Location: /curso/listar", true, 302);
+    }
 }
