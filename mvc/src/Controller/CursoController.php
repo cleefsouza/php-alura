@@ -52,10 +52,18 @@ class CursoController implements ControladorRequisicaoInterface
      */
     public function salvar(): void
     {
+        $nome = filter_input(
+            INPUT_POST,
+            "nome",
+            FILTER_SANITIZE_STRING
+        );
+
         $curso = new Curso();
-        $curso->setNome($_POST["nome"]);
+        $curso->setNome($nome);
 
         $this->entityManager->persist($curso);
         $this->entityManager->flush();
+
+        header("Location: /curso/listar", true, 302);
     }
 }

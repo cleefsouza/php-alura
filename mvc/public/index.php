@@ -3,7 +3,6 @@
 require __DIR__ . "/../vendor/autoload.php";
 
 use Alura\MVC\Controller\CursoController;
-use Alura\MVC\Controller\FormularioController;
 
 switch ($_SERVER["PATH_INFO"]) {
     case "/curso/listar":
