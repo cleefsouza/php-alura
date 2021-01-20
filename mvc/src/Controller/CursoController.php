@@ -52,13 +52,15 @@ class CursoController implements ControladorRequisicaoInterface
      */
     public function salvar(): void
     {
-        $nome = filter_input(
-            INPUT_POST,
-            "nome",
-            FILTER_SANITIZE_STRING
-        );
-
+        $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
         $curso = new Curso();
+
+        if (!empty($id)) {
+            $curso = $this->entityManager->getRepository(Curso::class)->find($id);
+        }
+
+
+        $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_STRING);
         $curso->setNome($nome);
 
         $this->entityManager->persist($curso);
@@ -72,13 +74,11 @@ class CursoController implements ControladorRequisicaoInterface
      */
     public function remover(): void
     {
-        $id = filter_input(
-            INPUT_GET,
-            "id",
-            FILTER_VALIDATE_INT
-        );
+        $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 
-        if (empty($id)) header("Location: /curso/listar", true, 404);
+        if (empty($id)) {
+            header("Location: /curso/listar", true, 404);
+        }
 
         $curso = $this->entityManager->getReference(Curso::class, $id);
 
@@ -86,5 +86,22 @@ class CursoController implements ControladorRequisicaoInterface
         $this->entityManager->flush();
 
         header("Location: /curso/listar", true, 302);
+    }
+
+    /**
+     * Alterar curso
+     */
+    public function alterar(): void
+    {
+        $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+        $curso = $this->entityManager->getRepository(Curso::class)->find($id);
+
+        if (empty($curso)) {
+            header("Location: /curso/listar", true, 404);
+            return;
+        }
+
+        $titulo = "Alterar curso";
+        require __DIR__ . "/../../view/curso/form.php";
     }
 }

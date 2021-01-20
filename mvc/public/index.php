@@ -17,6 +17,9 @@ switch ($_SERVER["PATH_INFO"]) {
     case "/curso/remover":
         (new CursoController())->remover();
         break;
+    case "/curso/alterar":
+        (new CursoController())->alterar();
+        break;
     default:
         require __DIR__ . "/../view/erro404.php";
         break;
