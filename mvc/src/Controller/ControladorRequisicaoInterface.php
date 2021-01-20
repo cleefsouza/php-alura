@@ -27,4 +27,9 @@ interface ControladorRequisicaoInterface
      * Remover curso
      */
     public function remover(): void;
+
+    /**
+     * Alterar curso
+     */
+    public function alterar(): void;
 }

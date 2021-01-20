@@ -14,6 +14,10 @@ use Doctrine\ORM\{EntityManagerInterface, ORMException};
  */
 class CursoController implements ControladorRequisicaoInterface
 {
+    private const TITLE_LISTAR = "Listar cursos";
+    private const TITLE_ALTERAR = "Alterar curso";
+    private const TITLE_NOVO = "Novo curso";
+
     /**
      * @var EntityManagerInterface
      */
@@ -33,9 +37,9 @@ class CursoController implements ControladorRequisicaoInterface
      */
     public function listar(): void
     {
-        $titulo = "Listar cursos";
         $cursos = $this->entityManager->getRepository(Curso::class)->findAll();
-        require __DIR__ . "/../../view/curso/listar.php";
+
+        $this->renderizarHtml("curso/listar.php", ["titulo" => self::TITLE_LISTAR, "cursos" => $cursos]);
     }
 
     /**
@@ -43,8 +47,7 @@ class CursoController implements ControladorRequisicaoInterface
      */
     public function form(): void
     {
-        $titulo = "Novo curso";
-        require __DIR__ . "/../../view/curso/form.php";
+        $this->renderizarHtml("curso/form.php", ["titulo" => self::TITLE_NOVO]);
     }
 
     /**
@@ -101,7 +104,16 @@ class CursoController implements ControladorRequisicaoInterface
             return;
         }
 
-        $titulo = "Alterar curso";
-        require __DIR__ . "/../../view/curso/form.php";
+        $this->renderizarHtml("curso/form.php", ["titulo" => self::TITLE_ALTERAR, "curso" => $curso]);
+    }
+
+    /**
+     * @param string $template
+     * @param array $data
+     */
+    private function renderizarHtml(string $template, array $data): void
+    {
+        extract($data);
+        require __DIR__ . "/../../view/$template";
     }
 }
