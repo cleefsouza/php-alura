@@ -9,29 +9,10 @@ namespace Alura\MVC\Controller;
 interface ControladorRequisicaoInterface
 {
     /**
-     * Exibir informações
+     * @param string $rota
+     * @return mixed
      */
-    public function listar(): void;
-
-    /**
-     * Formulário de cadastro
-     */
-    public function form(): void;
-
-    /**
-     * Salvar curso
-     */
-    public function salvar(): void;
-
-    /**
-     * Remover curso
-     */
-    public function remover(): void;
-
-    /**
-     * Alterar curso
-     */
-    public function alterar(): void;
+    public function processarRequest(string $rota): void;
 
     /**
      * @param string $template

@@ -12,7 +12,7 @@ use Doctrine\ORM\{EntityManagerInterface, ORMException};
  * Class LoginController
  * @package Alura\MVC\Controller
  */
-class LoginController
+class LoginController implements ControladorRequisicaoInterface
 {
     private const TITLE_LOGIN = "Login";
     private const MSG_ERRO = "E-mail ou senha inválidos!";
@@ -32,11 +32,18 @@ class LoginController
     }
 
     /**
-     * Formulário de login
+     * @param string $rota
      */
-    public function form(): void
+    public function processarRequest(string $rota): void
     {
-        $this->renderizarHtml("login/form.php", ["titulo" => self::TITLE_LOGIN]);
+        switch ($rota) {
+            case "/login":
+                $this->form();
+                break;
+            case "/login/validar":
+                $this->validar();
+                break;
+        }
     }
 
     /**
@@ -47,6 +54,14 @@ class LoginController
     {
         extract($data);
         require __DIR__ . "/../../view/$template";
+    }
+
+    /**
+     * Formulário de login
+     */
+    public function form(): void
+    {
+        $this->renderizarHtml("login/form.php", ["titulo" => self::TITLE_LOGIN]);
     }
 
     /**

@@ -33,9 +33,43 @@ class CursoController implements ControladorRequisicaoInterface
     }
 
     /**
+     * @param string $template
+     * @param array $data
+     */
+    public function renderizarHtml(string $template, array $data): void
+    {
+        extract($data);
+        require __DIR__ . "/../../view/$template";
+    }
+
+    /**
+     * @param string $rota
+     */
+    public function processarRequest(string $rota): void
+    {
+        switch ($rota) {
+            case "/curso/listar":
+                $this->listar();
+                break;
+            case "/curso/adicionar":
+                $this->form();
+                break;
+            case "/curso/salvar":
+                $this->salvar();
+                break;
+            case "/curso/alterar":
+                $this->alterar();
+                break;
+            case "/curso/remover":
+                $this->remover();
+                break;
+        }
+    }
+
+    /**
      * Listar cursos
      */
-    public function listar(): void
+    private function listar(): void
     {
         $cursos = $this->entityManager->getRepository(Curso::class)->findAll();
 
@@ -45,7 +79,7 @@ class CursoController implements ControladorRequisicaoInterface
     /**
      * Formulário para cadastro dos cursos
      */
-    public function form(): void
+    private function form(): void
     {
         $this->renderizarHtml("curso/form.php", ["titulo" => self::TITLE_NOVO]);
     }
@@ -53,7 +87,7 @@ class CursoController implements ControladorRequisicaoInterface
     /**
      * Salvar curso
      */
-    public function salvar(): void
+    private function salvar(): void
     {
         $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
         $curso = new Curso();
@@ -75,7 +109,7 @@ class CursoController implements ControladorRequisicaoInterface
     /**
      * Remover curso
      */
-    public function remover(): void
+    private function remover(): void
     {
         $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 
@@ -94,7 +128,7 @@ class CursoController implements ControladorRequisicaoInterface
     /**
      * Alterar curso
      */
-    public function alterar(): void
+    private function alterar(): void
     {
         $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
         $curso = $this->entityManager->getRepository(Curso::class)->find($id);
@@ -105,15 +139,5 @@ class CursoController implements ControladorRequisicaoInterface
         }
 
         $this->renderizarHtml("curso/form.php", ["titulo" => self::TITLE_ALTERAR, "curso" => $curso]);
-    }
-
-    /**
-     * @param string $template
-     * @param array $data
-     */
-    public function renderizarHtml(string $template, array $data): void
-    {
-        extract($data);
-        require __DIR__ . "/../../view/$template";
     }
 }
