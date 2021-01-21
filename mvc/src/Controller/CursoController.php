@@ -14,7 +14,7 @@ use Doctrine\ORM\{EntityManagerInterface, ORMException};
  */
 class CursoController implements ControladorRequisicaoInterface
 {
-    private const TITLE_LISTAR = "Listar cursos";
+    public const TITLE_LISTAR = "Listar cursos";
     private const TITLE_ALTERAR = "Alterar curso";
     private const TITLE_NOVO = "Novo curso";
 

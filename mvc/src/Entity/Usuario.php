@@ -70,4 +70,13 @@ class Usuario
     {
         $this->senha = password_hash($senha, PASSWORD_ARGON2I);
     }
+
+    /**
+     * @param string $senhaExterna
+     * @return bool
+     */
+    public function isSenhaValida(string $senhaExterna): bool
+    {
+        return password_verify($senhaExterna, $this->senha);
+    }
 }
