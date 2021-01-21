@@ -32,4 +32,10 @@ interface ControladorRequisicaoInterface
      * Alterar curso
      */
     public function alterar(): void;
+
+    /**
+     * @param string $template
+     * @param array $data
+     */
+    public function renderizarHtml(string $template, array $data): void;
 }

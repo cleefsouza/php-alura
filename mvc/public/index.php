@@ -3,6 +3,7 @@
 require __DIR__ . "/../vendor/autoload.php";
 
 use Alura\MVC\Controller\CursoController;
+use Alura\MVC\Controller\LoginController;
 
 switch ($_SERVER["PATH_INFO"]) {
     case "/curso/listar":
@@ -19,6 +20,8 @@ switch ($_SERVER["PATH_INFO"]) {
         break;
     case "/curso/alterar":
         (new CursoController())->alterar();
+    case "/login":
+        (new LoginController())->form();
         break;
     default:
         require __DIR__ . "/../view/erro404.php";

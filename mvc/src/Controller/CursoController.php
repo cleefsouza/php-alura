@@ -111,7 +111,7 @@ class CursoController implements ControladorRequisicaoInterface
      * @param string $template
      * @param array $data
      */
-    private function renderizarHtml(string $template, array $data): void
+    public function renderizarHtml(string $template, array $data): void
     {
         extract($data);
         require __DIR__ . "/../../view/$template";
