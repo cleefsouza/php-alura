@@ -9,5 +9,6 @@ return [
     "/curso/remover" => CursoController::class,
     "/curso/alterar" => CursoController::class,
     "/login" => LoginController::class,
+    "/logout" => LoginController::class,
     "/login/validar" => LoginController::class,
 ];

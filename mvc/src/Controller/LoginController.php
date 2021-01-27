@@ -43,6 +43,9 @@ class LoginController implements ControladorRequisicaoInterface
             case "/login/validar":
                 $this->validar();
                 break;
+            case "/logout":
+                $this->sair();
+                break;
         }
     }
 
@@ -92,5 +95,14 @@ class LoginController implements ControladorRequisicaoInterface
         $_SESSION["user"] = true;
 
         header("Location: /curso/listar", true, 302);
+    }
+
+    /**
+     * Deslogar usuário
+     */
+    public function sair(): void
+    {
+        session_destroy();
+        header("Location: /login");
     }
 }

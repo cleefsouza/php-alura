@@ -8,6 +8,17 @@
           crossorigin="anonymous">
 </head>
 <body>
+<?php if (isset($_SESSION["user"])): ?>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/curso/listar">Home</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/logout">Sair</a>
+            </li>
+        </ul>
+    </nav>
+<?php endif; ?>
+
 <div class="container">
     <div class="jumbotron mt-3 mb-3">
         <h1 class="mb-0"><?= $titulo; ?></h1>
