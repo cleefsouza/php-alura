@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Alura\MVC\Controller;
 
 use Alura\MVC\Entity\Usuario;
+use Alura\MVC\Helper\FlashMessageTrait;
 use Alura\MVC\Infrastructure\EntityManagerFactory;
 use Doctrine\ORM\{EntityManagerInterface, ORMException};
 
@@ -17,6 +18,8 @@ class LoginController implements ControladorRequisicaoInterface
     private const TITLE_LOGIN = "Login";
     private const MSG_ERRO = "E-mail ou senha inválidos!";
     private const TIPO_MSG_ERRO = "danger";
+
+    use FlashMessageTrait;
 
     /**
      * @var EntityManagerInterface
@@ -76,8 +79,7 @@ class LoginController implements ControladorRequisicaoInterface
         $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
 
         if (empty($email)) {
-            $_SESSION["msg"] = self::MSG_ERRO;
-            $_SESSION["tipo_msg"] = self::TIPO_MSG_ERRO;
+            $this->definirMsg(self::TIPO_MSG_ERRO, self::MSG_ERRO);
             header("Location: /login");
             return;
         }
@@ -91,8 +93,7 @@ class LoginController implements ControladorRequisicaoInterface
         $senha = filter_input(INPUT_POST, "senha", FILTER_SANITIZE_STRING);
 
         if (is_null($usuario) || !$usuario->isSenhaValida($senha)) {
-            $_SESSION["msg"] = self::MSG_ERRO;
-            $_SESSION["tipo_msg"] = self::TIPO_MSG_ERRO;
+            $this->definirMsg(self::TIPO_MSG_ERRO, self::MSG_ERRO);
             header("Location: /login");
             return;
         }

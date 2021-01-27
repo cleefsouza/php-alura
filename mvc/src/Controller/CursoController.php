@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Alura\MVC\Controller;
 
 use Alura\MVC\Entity\Curso;
+use Alura\MVC\Helper\FlashMessageTrait;
 use Alura\MVC\Infrastructure\EntityManagerFactory;
 use Doctrine\ORM\{EntityManagerInterface, ORMException};
 
@@ -17,6 +18,8 @@ class CursoController implements ControladorRequisicaoInterface
     public const TITLE_LISTAR = "Listar cursos";
     private const TITLE_ALTERAR = "Alterar curso";
     private const TITLE_NOVO = "Novo curso";
+
+    use FlashMessageTrait;
 
     /**
      * @var EntityManagerInterface
@@ -92,13 +95,11 @@ class CursoController implements ControladorRequisicaoInterface
         $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
         $curso = new Curso();
 
-        $_SESSION["msg"] = "Curso salvo com sucesso!";
-        $_SESSION["tipo_msg"] = "success";
+        $this->definirMsg("success", "Curso salvo com sucesso!");
 
         if (!empty($id)) {
             $curso = $this->entityManager->getRepository(Curso::class)->find($id);
-            $_SESSION["msg"] = "Curso atualizado com sucesso!";
-            $_SESSION["tipo_msg"] = "info";
+            $this->definirMsg("info", "Curso atualizado com sucesso!");
         }
 
 
@@ -127,8 +128,7 @@ class CursoController implements ControladorRequisicaoInterface
         $this->entityManager->remove($curso);
         $this->entityManager->flush();
 
-        $_SESSION["msg"] = "Curso removido com sucesso!";
-        $_SESSION["tipo_msg"] = "info";
+        $this->definirMsg("warning", "Curso removido com sucesso!");
         header("Location: /curso/listar", true, 302);
     }
 
