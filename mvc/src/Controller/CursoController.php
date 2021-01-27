@@ -92,8 +92,13 @@ class CursoController implements ControladorRequisicaoInterface
         $id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
         $curso = new Curso();
 
+        $_SESSION["msg"] = "Curso salvo com sucesso!";
+        $_SESSION["tipo_msg"] = "success";
+
         if (!empty($id)) {
             $curso = $this->entityManager->getRepository(Curso::class)->find($id);
+            $_SESSION["msg"] = "Curso atualizado com sucesso!";
+            $_SESSION["tipo_msg"] = "info";
         }
 
 
@@ -122,6 +127,8 @@ class CursoController implements ControladorRequisicaoInterface
         $this->entityManager->remove($curso);
         $this->entityManager->flush();
 
+        $_SESSION["msg"] = "Curso removido com sucesso!";
+        $_SESSION["tipo_msg"] = "info";
         header("Location: /curso/listar", true, 302);
     }
 

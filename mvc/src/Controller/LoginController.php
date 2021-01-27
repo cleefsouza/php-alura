@@ -16,6 +16,7 @@ class LoginController implements ControladorRequisicaoInterface
 {
     private const TITLE_LOGIN = "Login";
     private const MSG_ERRO = "E-mail ou senha inválidos!";
+    private const TIPO_MSG_ERRO = "danger";
 
     /**
      * @var EntityManagerInterface
@@ -75,7 +76,9 @@ class LoginController implements ControladorRequisicaoInterface
         $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
 
         if (empty($email)) {
-            echo self::MSG_ERRO;
+            $_SESSION["msg"] = self::MSG_ERRO;
+            $_SESSION["tipo_msg"] = self::TIPO_MSG_ERRO;
+            header("Location: /login");
             return;
         }
 
@@ -88,7 +91,9 @@ class LoginController implements ControladorRequisicaoInterface
         $senha = filter_input(INPUT_POST, "senha", FILTER_SANITIZE_STRING);
 
         if (is_null($usuario) || !$usuario->isSenhaValida($senha)) {
-            echo self::MSG_ERRO;
+            $_SESSION["msg"] = self::MSG_ERRO;
+            $_SESSION["tipo_msg"] = self::TIPO_MSG_ERRO;
+            header("Location: /login");
             return;
         }
 

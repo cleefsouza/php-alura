@@ -18,8 +18,17 @@
         </ul>
     </nav>
 <?php endif; ?>
-
 <div class="container">
     <div class="jumbotron mt-3 mb-3">
         <h1 class="mb-0"><?= $titulo; ?></h1>
     </div>
+
+    <?php if (isset($_SESSION["msg"])): ?>
+        <div class="mb-3 alert alert-<?= $_SESSION["tipo_msg"]; ?>">
+            <?= $_SESSION["msg"]; ?>
+        </div>
+        <?php
+        unset($_SESSION["msg"]);
+        unset($_SESSION["tipo_msg"]);
+        ?>
+    <?php endif; ?>
