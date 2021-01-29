@@ -3,15 +3,16 @@
 require __DIR__ . "/../vendor/autoload.php";
 
 use Alura\PSR\Controller\FormInsercaoController;
-use Alura\PSR\Controller\RequestControllerInterface;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
+use Psr\Container\ContainerInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 $path = $_SERVER["PATH_INFO"];
 $rotas = require_once __DIR__ . "/../config/routes.php";
 
 if (!array_key_exists($path, $rotas)) {
-//    require __DIR__ . "/../view/erro404.php";
+    http_response_code(404);
     die;
 }
 
@@ -34,9 +35,13 @@ $creator = new ServerRequestCreator(
 
 $request = $creator->fromGlobals();
 
-/** @var FormInsercaoController $controller */
-$controller = new FormInsercaoController();
-$response = $controller->processarRequest($request);
+/** @var ContainerInterface $container */
+$container = require_once __DIR__ . "/../config/dependencies.php";
+
+/** @var RequestHandlerInterface $controller */
+$controller = $container->get($rotas[$path]);
+
+$response = $controller->handle($request);
 
 foreach ($response->getHeaders() as $name => $values) {
     foreach ($values as $value) {

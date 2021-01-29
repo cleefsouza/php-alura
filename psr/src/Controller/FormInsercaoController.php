@@ -2,21 +2,36 @@
 
 namespace Alura\PSR\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Nyholm\Psr7\Response;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Class FormInsercaoController
  * @package Alura\PSR\Controller
  */
-class FormInsercaoController implements RequestControllerInterface
+class FormInsercaoController implements RequestHandlerInterface
 {
     /**
-     * @param ServerRequestInterface $req
+     * @var EntityManagerInterface
+     */
+    private EntityManagerInterface $entityManager;
+
+    /**
+     * FormInsercaoController constructor.
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /**
+     * @param ServerRequestInterface $request
      * @return ResponseInterface
      */
-    public function processarRequest(ServerRequestInterface $req): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         return new Response(200, [], "Olá mundo!");
     }
