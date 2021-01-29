@@ -2,7 +2,6 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
-use Alura\PSR\Controller\FormInsercaoController;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7Server\ServerRequestCreator;
 use Psr\Container\ContainerInterface;
@@ -17,12 +16,6 @@ if (!array_key_exists($path, $rotas)) {
 }
 
 session_start();
-//$isLogin = stripos($path, "login");
-//
-//if (!isset($_SESSION["user"]) && $isLogin === false) {
-//    header("Location: /login", true, 302);
-//    die;
-//}
 
 $psr17Factory = new Psr17Factory();
 

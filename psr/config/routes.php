@@ -2,4 +2,4 @@
 
 use Alura\PSR\Controller\FormInsercaoController;
 
-return ["/adicionar" => FormInsercaoController::class];
+return ["" => FormInsercaoController::class];
